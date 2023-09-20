@@ -1,0 +1,19 @@
+{
+  "name": "backend-crimac",
+  "version": "1.0.0",
+  "description": "Backend For CriMac Of Jharkhand Police Department",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamthehr/Backend-Crimac.git"
+  },
+  "author": "CriMac WebTeam Nit Jsr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamthehr/Backend-Crimac/issues"
+  },
+  "homepage": "https://github.com/iamthehr/Backend-Crimac#readme"
+}
