@@ -1,28 +1,37 @@
-const expressAsyncHandler = require('express-async-handler');
-const generateToken = require('../config/generateToken');
-const Station = require('../models/stationsModel');
+const expressAsyncHandler = require("express-async-handler");
+const generateToken = require("../config/generateToken");
+const Station = require("../models/stationsModel");
+const bcrypt = require("bcryptjs");
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
 // @access  Public
 
 const authUser = expressAsyncHandler(async (req, res) => {
+  try {
     const { username, password } = req.body;
+    //console.log(username + password);
 
-    const station = Station.findOne({ username });
+    const station = await Station.findOne({ username });
+    //console.log(station.password);
 
-    if(station & (await station.matchPassword(password))){
-        res.json({
-            _id: station._id,
-            stationName: station.stationName,
-            username: station.username,
-            token: generateToken(station._id),
-        });
+    if (station && password === station.password) {
+      res.status(200).json({
+        _id: station._id,
+        stationName: station.stationName,
+        username: station.username,
+        token: generateToken(station._id),
+        message: "success",
+      });
+    } else {
+      res.status(400).json({
+        error: "error",
+      });
     }
-    else{
-        res.status(401);
-        throw new Error('Invalid username or password');
-    }
-}
-);
+  } catch (e) {
+    res.status(400).json({
+      error: e,
+    });
+  }
+});
 module.exports = { authUser };
