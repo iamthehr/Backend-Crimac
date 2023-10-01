@@ -22,6 +22,7 @@ const schema = new mongoose.Schema({
   address: String,
   wanted: Boolean,
   description: String,
+  file: String,
 });
 
 const model = mongoose.model("model", schema);
