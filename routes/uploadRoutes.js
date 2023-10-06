@@ -5,3 +5,5 @@ const { upload } = require("../controllers/uploader");
 const router = express.Router();
 
 router.post("/uploadCrime", upload.single("file"), uploadCrime);
+
+module.exports = router;
